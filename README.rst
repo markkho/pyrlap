@@ -2,6 +2,9 @@
 Pyrlap (Python Reinforcement Learning and Planning Library)
 ***********************************************************
 
+Note: This repo is no longer being actively maintained, but see this one:
+`msdm <https://github.com/markkho/msdm>`.
+
 Implementations of basic rl and planning algorithms and domains
 mainly for cog sci research.
 
