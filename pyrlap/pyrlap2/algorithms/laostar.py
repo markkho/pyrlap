@@ -5,6 +5,8 @@ import random
 import numpy as np
 
 from pyrlap.pyrlap2.core import AssignmentMap as Dict, Plans, Result
+from pyrlap.pyrlap2.core.problemclasses.mdp.policy import TabularPolicy
+from pyrlap.pyrlap2.core.problemclasses.mdp import TabularMarkovDecisionProcess
 
 def _hash(x):
     if isinstance(x, dict):
@@ -22,7 +24,7 @@ class LAOStar(Plans):
                  eGraph=None,
                  showWarning=False,
                  showProgress=True,
-                 maxLAOIters=100,
+                 maxLAOIters=1000,
                  policyEvaluationIters=100,
                  policyIterationIters=100,
                  seed=None):
@@ -207,11 +209,20 @@ class LAOStar(Plans):
             
         if A.showProgress:
             pbar.close()
+
+        if isinstance(mdp, TabularMarkovDecisionProcess):
+            policy = TabularPolicy(
+                mdp.states,
+                mdp.actions,
+                policydict=Dict([(n['state'], Dict([(n['bestaction'], 1.0)])) for n in eGraph.values()])
+            )
             
         return Result(
             eGraph=eGraph,
             sGraph=sGraph,
             laoIter=laoIter,
+            max_laoiters_reached = laoIter == A.maxLAOIters,
             nonterminaltips=ntt,
-            seed=seed
+            seed=seed,
+            policy=policy
         )
