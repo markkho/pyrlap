@@ -50,7 +50,7 @@ def visualize_states(ax=None, states=None,
     if plot_size is None and len(panels) == 0:
         ax.set_xlim(-0.1, 1 + max([s[0] for s in states]) + .1)
         ax.set_ylim(-0.1, 1 + max([s[1] for s in states]) + .1)
-        ax.axis('scaled')
+        ax.axis('equal')
     elif len(panels) > 0:
         xlim = [-0.1, 1 + max([s[0] for s in states]) + .1]
         ylim = [-0.1, 1 + max([s[1] for s in states]) + .1]
