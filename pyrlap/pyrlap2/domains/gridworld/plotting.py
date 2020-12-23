@@ -41,7 +41,7 @@ class GridWorldPlotter:
         self.ax.axis('off')
         self.ax.set_xlim(-0.1, self.gw.width + .1)
         self.ax.set_ylim(-0.1, self.gw.height + .1)
-        self.ax.axis('scaled')
+        self.ax.axis('equal')
 
     def plotFeatures(self, featureColors, edgecolor='darkgrey') -> "GridWorldPlotter":
         """Plot gridworld features"""
